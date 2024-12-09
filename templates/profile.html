@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            color: #333;
+            margin: 0;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: .25rem;
+            text-align: center;
+        }
+
+        .container {
+            width: 70%;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+
+        .profile-item:hover {
+            background-color: #afc4d2;
+        }
+
+        .profile-item span {
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Profile</h1>
+    </header>
+
+    <div class="container">
+        <h2>Welcome, {{ user.first_name }}!</h2>
+        <p>Your monthly budget is: ₹{{ user.monthly_budget }}</p>
+
+        <!-- User Info -->
+        <div class="profile-item">
+            <span>First Name:</span>
+            <span>{{ user.first_name }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Last Name:</span>
+            <span>{{ user.last_name }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Email:</span>
+            <span>{{ user.email }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Phone:</span>
+            <span>{{ user.phone }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Company:</span>
+            <span>{{ user.company }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Date of Birth:</span>
+            <span>{{ user.dob }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Username:</span>
+            <span>{{ user.username }}</span>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <!-- Link to Edit Profile (Optional) -->
+            <a href="{{ url_for('edit_profile') }}" class="btn">Edit Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

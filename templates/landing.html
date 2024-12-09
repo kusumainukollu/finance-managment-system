@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Management App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #81C784;
+        }
+
+        /* Landing section */
+        .landing-section {
+            text-align: center;
+            padding: 100px 20px;
+            background: url('https://unsplash.com/photos/a-group-of-people-sitting-at-a-table-working-on-paperwork-HqyLpZyGPYc') no-repeat center center/cover;
+            color: green;
+            position: relative;
+        }
+
+        .landing-section h1 {
+            font-size: 50px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .landing-section p {
+            font-size: 20px;
+            margin: 20px 0;
+            animation: fadeIn 2s;
+        }
+
+        .cta-button {
+            background-color: #fff;
+            color: #4CAF50;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: bounce 2s infinite;
+        }
+
+        .cta-button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        /* Info sections */
+        .info-section {
+            text-align: center;
+            padding: 50px 20px;
+            margin: 40px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            background-color: #fff;
+        }
+
+        .info-section img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-section h2 {
+            font-size: 32px;
+            color: #4CAF50;
+        }
+
+        .info-section p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Landing Page Section -->
+    <section class="landing-section" id="home">
+        <h1>Welcome to Financial Management App</h1>
+        <p>Track your income, expenses, and create budgets to manage your finances effectively!</p>
+        <button class="cta-button" onclick="window.location.href='{{ url_for('login') }}'">Get Started</button>
+    </section>
+
+    <!-- Title Section -->
+    <div class="info-section" id="title">
+        <img src="m1.jpg" alt="Financial Planning">
+        <h2>Financial Management App</h2>
+        <p>Your ultimate tool for managing personal finances with ease and efficiency.</p>
+    </div>
+
+    <!-- Use of App Section -->
+    <div class="info-section" id="use">
+        <img src="m1.jpg" alt="Budgeting Tools">
+        <h2>How to Use the App</h2>
+        <p>Simply input your income and expenses, set budgets, and track your financial progress over time.</p>
+    </div>
+
+    <!-- Daily Life Help Section -->
+    <div class="info-section" id="help">
+        <img src="https://source.unsplash.com/400x300/?savings,growth" alt="Financial Growth">
+        <h2>How It Will Help in Daily Life</h2>
+        <p>This app will help you make informed financial decisions, save money, and achieve your financial goals.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Financial Management App</p>
+    </footer>
+
+</body>
+</html>

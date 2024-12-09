@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f5e9; /* Light green background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Centered Container */
+        .login-container {
+            background-color: #ffffff; /* White background for form */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* Heading */
+        h1 {
+            color: #2e7d32; /* Dark green */
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #388e3c; /* Medium green */
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #c8e6c9; /* Light green border */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            background-color: #4caf50; /* Green button */
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        form button:hover {
+            background-color: #388e3c; /* Darker green on hover */
+        }
+
+        /* Link Styles */
+        p {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666666; /* Gray text */
+        }
+
+        p a {
+            color: #2e7d32; /* Dark green for link */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form method="POST" action="{{ url_for('login') }}">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br>
+        
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br>
+        
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('sign_up') }}">Sign up here</a></p>
+    </div>
+</body>
+</html>

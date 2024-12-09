@@ -1,0 +1,117 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+/* Form Styles */
+form {
+    width: 50%;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"], input[type="number"], input[type="date"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Login and Sign-Up Pages */
+h1 {
+    color: #2c3e50;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+p {
+    text-align: center;
+}
+
+p a {
+    font-weight: bold;
+}
+
+/* Dashboard Styles */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #3498db;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Add Transaction Page */
+#add-transaction-form {
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+#add-transaction-form input[type="text"], #add-transaction-form input[type="number"], #add-transaction-form select {
+    width: 100%;
+}
+
+#add-transaction-form button {
+    background-color: #2ecc71;
+}
+
+#add-transaction-form button:hover {
+    background-color: #27ae60;
+}

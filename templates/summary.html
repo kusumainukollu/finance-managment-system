@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Summary</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            color: #333;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+
+        .summary-item span {
+            font-weight: bold;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+        }
+
+        .chart-container canvas {
+            width: 100%;
+        }
+
+        .alert {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .back-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .back-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Budget Tracker - Summary</h1>
+    </header>
+
+    <div class="container">
+        <h2>Financial Summary</h2>
+
+        <!-- Total Income vs Total Expenses -->
+        <div class="summary-item">
+            <span>Total Income:</span>
+            <span>₹{{ total_income }}</span>
+        </div>
+        <div class="summary-item">
+            <span>Total Expenses:</span>
+            <span>₹{{ total_expenses }}</span>
+        </div>
+        <div class="summary-item">
+            <span>Remaining Budget:</span>
+            <span>₹{{ remaining_budget }}</span>
+        </div>
+
+        <!-- Expense Breakdown by Category -->
+        <h3>Expense Breakdown by Category</h3>
+        {% for expense in category_expenses %}
+        <div class="summary-item">
+            <span>{{ expense.category }}:</span>
+            <span>₹{{ expense.total_amount }}</span>
+        </div>
+        {% endfor %}
+
+        <!-- Chart for Expenses -->
+        <div class="chart-container">
+            <h3>Expenses Chart</h3>
+            <canvas id="expenseChart"></canvas>
+        </div>
+
+        <!-- Alert if budget is exceeded -->
+        <div class="alert" id="budgetAlert" style="display: none;">
+            You have exceeded your budget in the food category.
+        </div>
+        <a href="javascript:window.history.back();" class="back-btn">Back</a>
+    </div>
+
+    <script>
+        // Fetch chart data from Flask passed context
+        var chartData = {{ chart_data | tojson }};
+        var chartType = 'pie';  // Default chart type
+
+        // Initialize the chart
+        var ctx = document.getElementById('expenseChart').getContext('2d');
+        var expenseChart = new Chart(ctx, {
+            type: chartType,
+            data: chartData['pie'],
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ₹' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Switch between Pie and Bar chart
+        document.getElementById('switchChartBtn').addEventListener('click', function() {
+            if (chartType === 'pie') {
+                chartType = 'bar';
+                expenseChart.data = chartData['bar'];
+                document.getElementById('switchChartBtn').textContent = 'Switch to Pie Chart';
+            } else {
+                chartType = 'pie';
+                expenseChart.data = chartData['pie'];
+                document.getElementById('switchChartBtn').textContent = 'Switch to Bar Chart';
+            }
+            expenseChart.update();
+        });
+
+        // Minimize/Expand the chart container
+        document.getElementById('minimizeChartBtn').addEventListener('click', function() {
+            var chartContainer = document.getElementById('chart-container');
+            chartContainer.classList.toggle('minimized');
+            var btnText = chartContainer.classList.contains('minimized') ? 'Maximize Chart' : 'Minimize Chart';
+            document.getElementById('minimizeChartBtn').textContent = btnText;
+        });
+    </script>
+
+</body>
+</html>
